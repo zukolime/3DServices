@@ -14,18 +14,30 @@ const timer = (deadline) => {
     return { timeRemaining, hours, minutes, seconds };
   };
 
+  const timerOnZeroes = () => {
+    timerHours.textContent = "00";
+    timerMinutes.textContent = "00";
+    timerSeconds.textContent = "00";
+  };
+
+  const addZeroBefore = (value) => {
+    return value < 10 ? "0" + value : value;
+  };
+
   const updateClock = () => {
     const getTime = getTimeRemaining();
 
-    timerHours.textContent = getTime.hours;
-    timerMinutes.textContent = getTime.minutes;
-    timerSeconds.textContent = getTime.seconds;
+    timerHours.textContent = addZeroBefore(getTime.hours);
+    timerMinutes.textContent = addZeroBefore(getTime.minutes);
+    timerSeconds.textContent = addZeroBefore(getTime.seconds);
 
-    if (getTime.timeRemaining > 0) {
-      setTimeout(updateClock, 1000);
+    if (getTime.timeRemaining < 0) {
+      clearInterval();
+      timerOnZeroes();
     }
   };
 
+  setInterval(updateClock, 1000);
   updateClock();
 };
 
