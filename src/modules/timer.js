@@ -32,12 +32,12 @@ const timer = (deadline) => {
     timerSeconds.textContent = addZeroBefore(getTime.seconds);
 
     if (getTime.timeRemaining < 0) {
-      clearInterval();
+      clearInterval(idInterval);
       timerOnZeroes();
     }
   };
 
-  setInterval(updateClock, 1000);
+  const idInterval = setInterval(updateClock, 1000);
   updateClock();
 };
 
