@@ -6,7 +6,6 @@ const modal = () => {
 
   const isMobile = window.innerWidth <= 768;
 
-  let active = false;
   let count = 0;
   let idInterval;
 
@@ -19,7 +18,6 @@ const modal = () => {
       popupContent.style.top = `${count}%`;
     } else {
       cancelAnimationFrame(idInterval);
-      active = false;
     }
   };
 
@@ -32,7 +30,6 @@ const modal = () => {
     } else {
       cancelAnimationFrame(idInterval);
       modal.style.display = `none`;
-      active = false;
     }
   };
 
